@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
     document.querySelector("form").onsubmit = function(){
         document.querySelector('p').innerHTML = ""
-        document.querySelector('#result').style.height = "2rem"
+        document.querySelector('#result').style.height = "2.2rem"
         const from = document.querySelector("#from").value.toUpperCase()
         const to = document.querySelector("#to").value.toUpperCase()
         const amount = document.querySelector("#amount").value
@@ -18,8 +18,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     fetch(`https://api.apilayer.com/exchangerates_data/convert?to=${to}&from=${from}&amount=${amount}`, requestOptions)
     .then(response => response.json())
     .then(result => {
-        document.querySelector('#result').style.height = "8rem"
         document.querySelector('p').innerHTML = `The coversion rate of <strong style="color:red">${from}</strong> to <strong style="color:red">${to}</strong> is <strong style="color:blue">${result.info.rate}</strong> and the coverted amount of <strong style="color:red">${amount}</strong> is <strong style="color:blue">${result.result}</strong>`;
+        var textHeight = document.querySelector('p').clientHeight + 40;
+        document.querySelector('#result').style.height = `${textHeight}px`
+        setTimeout(()=>{
+            document.querySelector('p').style.opacity = "1"
+
+        },500)
         
         })
     .catch(error => 
