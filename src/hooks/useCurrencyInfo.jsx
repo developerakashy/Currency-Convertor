@@ -4,7 +4,7 @@ const useCurrencyInfo = (currency) => {
     const [currencyData, setCurrencyData] = useState({})
     const [countryData, setCountryData] = useState({})
 
-    console.log('render useCurrencyInfo')
+    
     useEffect(() => {
 
         const countryNames = new Promise(async (resolve, reject) => {
@@ -18,7 +18,6 @@ const useCurrencyInfo = (currency) => {
                 resolve(data)
             }
             catch(error){
-                console.error(error)
                 reject(error)
             }
         })
@@ -31,7 +30,6 @@ const useCurrencyInfo = (currency) => {
                     throw new Error(`Response status: ${response.status}`)
                 }
                 const data = await response.json()
-                console.log(data)
                 resolve(data)
             }
             catch(error){
@@ -44,7 +42,7 @@ const useCurrencyInfo = (currency) => {
             setCurrencyData(currencyInfo[currency])
             setCountryData(countryInfo)
         })
-        console.log('promise')
+
 
 
     }, [currency])
